@@ -2,12 +2,6 @@
 {
     public class Enuns
     {
-        public enum TipoMovimento
-        {
-            Credito = 'C',
-            Debito = 'D'
-        }
-
         public enum StatusConta
         {
             Nao = 0,

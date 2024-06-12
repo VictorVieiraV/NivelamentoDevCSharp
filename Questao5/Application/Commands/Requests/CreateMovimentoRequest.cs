@@ -7,7 +7,7 @@ namespace Questao5.Application.Commands.Requests
     {
         public Guid IdRequisicao { get; set; }
         public string IdContaCorrente { get; set; }
-        public TipoMovimento TipoMovimento { get; set; }
+        public string TipoMovimento { get; set; }
         public decimal Valor { get; set; }
     }
 }

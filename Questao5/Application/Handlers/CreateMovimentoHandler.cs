@@ -29,7 +29,7 @@ namespace Questao5.Application.Handlers
             if (request.Valor <= 0)
                 throw new Exception("INVALID_VALUE");
 
-            if (request.TipoMovimento != Domain.Enumerators.Enuns.TipoMovimento.Credito && request.TipoMovimento != Domain.Enumerators.Enuns.TipoMovimento.Debito)
+            if (request.TipoMovimento != "C" && request.TipoMovimento != "D")
                 throw new Exception("INVALID_TYPE");
 
             var idempotencia = await _dbConnection.QueryFirstOrDefaultAsync<Idempotencia>(
