@@ -1,5 +1,7 @@
 using MediatR;
+using Microsoft.Data.Sqlite;
 using Questao5.Infrastructure.Sqlite;
+using System.Data;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +14,13 @@ builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
 // sqlite
 builder.Services.AddSingleton(new DatabaseConfig { Name = builder.Configuration.GetValue<string>("DatabaseName", "Data Source=database.sqlite") });
 builder.Services.AddSingleton<IDatabaseBootstrap, DatabaseBootstrap>();
+builder.Services.AddSingleton<IDbConnection>(sp =>
+{
+    var config = sp.GetRequiredService<DatabaseConfig>();
+    var connection = new SqliteConnection(config.Name);
+    connection.Open(); 
+    return connection;
+});
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
